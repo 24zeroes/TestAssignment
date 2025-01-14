@@ -23,4 +23,15 @@ public class Tests
         var result = _consumer.Consume();
         Assert.That(result, Is.EqualTo(0));
     }
+    
+    [Test]
+    public void Multithread_TwoProducers()
+    {
+        var producerCount = 1000000;
+        var t1 = Task.Run(() => { _producer.Produce(producerCount); });
+        var t2 = Task.Run(() => { _producer.Produce(producerCount); });
+        Task.WaitAll(t1, t2);
+
+        Assert.That(_queue, Has.Count.EqualTo(producerCount * 2));
+    }
 }
