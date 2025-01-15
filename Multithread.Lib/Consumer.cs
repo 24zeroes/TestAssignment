@@ -2,9 +2,9 @@ namespace Multithread.Lib;
 
 public class Consumer
 {
-    private readonly Queue<int> _queue;
+    private readonly BlockingQueue _queue;
  
-    public Consumer(Queue<int> queue)
+    public Consumer(BlockingQueue queue)
     {
         _queue = queue;
     }
@@ -12,7 +12,7 @@ public class Consumer
     public int Consume()
     {
         var res = _queue.Dequeue();
-        Console.WriteLine($"Consuming from queue: {_queue.Count} value {res}"); 
+        Console.WriteLine($"Consuming from queue: value {res}"); 
         return res;
     }
 }
