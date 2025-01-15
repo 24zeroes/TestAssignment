@@ -12,7 +12,7 @@ public class Consumer
     public int Consume()
     {
         var res = _queue.Dequeue();
-        Console.WriteLine($"Consuming from queue: value {res}"); 
+        Console.WriteLine($"Consuming from queue: size {_queue.Count} value {res}"); 
         return res;
     }
 }
